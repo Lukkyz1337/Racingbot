@@ -13,10 +13,14 @@ public class PbCommand implements Command {
 
     public void action(@NotNull String[] args, MessageReceivedEvent event) {
 
-        try {
-            sendPbs(event, event.getAuthor().getIdLong(), args[0]);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        if (args.length < 1) {
+            try {
+                sendPbs(event, event.getAuthor().getIdLong(), args[0]);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            sendEmbed(event, "Invalid arguments. Use ``-pb <speedrun.com user>", "", true);
         }
 
     }
@@ -64,34 +68,6 @@ public class PbCommand implements Command {
         }
 
         return pbs;
-
-    }
-
-    public boolean checkIfTime(@NotNull String input) {
-
-        if (input == null) return false;
-        String[] time = input.split(":");
-
-        try {
-
-            int mins = Integer.parseInt(time[0]);
-            int seconds = Integer.parseInt(time[1]);
-
-            return seconds <= 60 && (seconds >= 1 || mins >= 1);
-
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-
-    }
-
-    public String formattedTime(String input) {
-
-        if (input == null && !checkIfTime(input)) return "NaN";
-
-        String[] time = input.split(":");
-
-        return time[0] + "min " + time[1] + "sec";
 
     }
 
