@@ -89,11 +89,7 @@ public class UpdatePbCommand implements Command {
             int mins = Integer.parseInt(time[0]);
             int seconds = Integer.parseInt(time[1]);
 
-            if (seconds > 60 || seconds < 1 && mins < 1) {
-                return false;
-            } else {
-                return true;
-            }
+            return seconds <= 60 && (seconds >= 1 || mins >= 1);
 
         } catch (NumberFormatException nfe) {
             return false;
@@ -102,7 +98,7 @@ public class UpdatePbCommand implements Command {
     }
 
     public String formattedTime(String input) {
-        if (input == null && !checkIfTime(input)) return "joe";
+        if (input == null && !checkIfTime(input)) return "null";
 
         String[] time = input.split(":");
         String mins = time[0], sec = time[1];

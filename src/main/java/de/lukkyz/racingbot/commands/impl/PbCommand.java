@@ -8,8 +8,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class PbCommand implements Command {
 
-
-
     String pb = "4:20";
 
     public void action(@NotNull String[] args, MessageReceivedEvent event) {
@@ -65,11 +63,7 @@ public class PbCommand implements Command {
             int mins = Integer.parseInt(time[0]);
             int seconds = Integer.parseInt(time[1]);
 
-            if (seconds > 60 || seconds < 1 && mins < 1) {
-                return false;
-            } else {
-                return true;
-            }
+            return seconds <= 60 && (seconds >= 1 || mins >= 1);
 
         } catch (NumberFormatException nfe) {
             return false;
