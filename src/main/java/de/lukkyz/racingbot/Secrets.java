@@ -3,7 +3,7 @@ package de.lukkyz.racingbot;
 public class Secrets {
 
     /* Bot Token */
-    public static final String BOT_TOKEN = "-";
+    public static final String BOT_TOKEN = "Njk1OTUxMTAxMzc5MjE1Mzkw.Xr-m_g.nyUVMX6F0yI2c_DRpHupj5DVwqY";
     public static final String SPEEDRUN_COM_API_KEY = "-";
 
     /*Racing with Portals Discord Statics*/

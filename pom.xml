@@ -8,6 +8,10 @@
     <artifactId>racingbot</artifactId>
     <version>1.0-Beta</version>
 
+    <properties>
+        <java.version>12</java.version>
+    </properties>
+
     <dependencies>
 
         <dependency>

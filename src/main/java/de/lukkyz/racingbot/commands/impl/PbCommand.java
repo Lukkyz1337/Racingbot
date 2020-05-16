@@ -1,26 +1,22 @@
 package de.lukkyz.racingbot.commands.impl;
 
 import de.lukkyz.racingbot.commands.Command;
+import de.lukkyz.srdc4j.game.run.PlacedRun;
+import de.lukkyz.srdc4j.users.User;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class PbCommand implements Command {
+import java.io.IOException;
 
-    String pb = "4:20";
+public class PbCommand implements Command {
 
     public void action(@NotNull String[] args, MessageReceivedEvent event) {
 
-        if (args.length < 1) {
-
-            sendPbs(event, event.getAuthor().getIdLong());
-
-        } else {
-
-            User user = event.getJDA().getUserByTag("@" + args[0]);
-            sendEmbed(event, "", user.getName(), false);
-
+        try {
+            sendPbs(event, event.getAuthor().getIdLong(), args[0]);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
     }
@@ -33,11 +29,9 @@ public class PbCommand implements Command {
         return false;
     }
 
-    private void sendPbs(MessageReceivedEvent event, long discordId) {
+    private void sendPbs(MessageReceivedEvent event, long discordId, String profile) throws IOException {
 
-        sendEmbed(event, "**Glitchless**: " + formattedTime(pb) + "\n**Inbounds**: " + formattedTime(pb) +
-                "\n**Inbounds No SLA**: " + formattedTime(pb) + "\n**Out of Bounds**: " + formattedTime(pb),
-                "**" + event.getJDA().getUserById(discordId).getName() + "'s Personal Bests:**", false);
+        sendEmbed(event, fetchPbs(profile), profile + "'s Portal PB's:", false);
 
     }
 
@@ -50,6 +44,26 @@ public class PbCommand implements Command {
         embedBuilder.setDescription(text + "\n");
 
         event.getTextChannel().sendMessage(embedBuilder.build()).queue();
+
+    }
+
+    public String fetchPbs(String user) throws IOException {
+        String pbs = "";
+
+        User sr_user = User.fromID(user);
+        PlacedRun[] runs;
+
+        runs = sr_user.getPBs("Portal").getData();
+
+        for (int i = 0; i < runs.length; i++) {
+
+            if (runs[i].getRun().getLevel() == null) {
+                pbs += "" + runs[i].getRun().getCategory().getName() + ": **" + runs[i].getRun().getTimes().getPrimary().replace("M", ":").replace("PT", "").replace("S", "") + "** (#" + runs[i].getPlace() + ")\n";
+            }
+
+        }
+
+        return pbs;
 
     }
 
