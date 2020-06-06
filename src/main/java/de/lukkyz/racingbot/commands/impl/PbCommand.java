@@ -13,7 +13,7 @@ public class PbCommand implements Command {
 
     public void action(@NotNull String[] args, MessageReceivedEvent event) {
 
-        if (args.length < 1) {
+        if (args.length == 1) {
             try {
                 sendPbs(event, event.getAuthor().getIdLong(), args[0]);
             } catch (IOException ex) {

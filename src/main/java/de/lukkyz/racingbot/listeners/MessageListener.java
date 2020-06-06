@@ -15,8 +15,8 @@ public class MessageListener extends ListenerAdapter {
 
         if (event.getMessage().getContentRaw().startsWith(Racingbot.PREFIX) &&
                 event.getMessage().getAuthor().getId() != event.getJDA().getSelfUser().getId() &&
-                event.getTextChannel() == event.getJDA().getGuildById(Secrets.DISCORD_SERVER_ID)
-                        .getTextChannelById(Secrets.DISCORD_BOT_COMMANDS)) {
+                (event.getTextChannel() == event.getJDA().getGuildById(Secrets.DISCORD_SERVER_ID)
+                        .getTextChannelById(Secrets.DISCORD_BOT_COMMANDS)|| event.getTextChannel().getIdLong() == Secrets.DISCORD_PERSONAL_BESTS)) {
             CommandHandler.handleCommand(CommandHandler.parser.parse(event.getMessage().getContentRaw(), event));
         }
 

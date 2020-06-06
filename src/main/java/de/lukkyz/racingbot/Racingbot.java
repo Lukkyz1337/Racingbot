@@ -2,6 +2,7 @@ package de.lukkyz.racingbot;
 
 import de.lukkyz.racingbot.commands.CommandHandler;
 import de.lukkyz.racingbot.commands.impl.PbCommand;
+import de.lukkyz.racingbot.commands.impl.RegisterCommand;
 import de.lukkyz.racingbot.commands.impl.UpdatePbCommand;
 import de.lukkyz.racingbot.listeners.MessageListener;
 import de.lukkyz.racingbot.listeners.ReadyListener;
@@ -30,6 +31,7 @@ public class Racingbot {
         /* Register Commands */
         CommandHandler.commands.put("update", new UpdatePbCommand());
         CommandHandler.commands.put("pb", new PbCommand());
+        CommandHandler.commands.put("register", new RegisterCommand());
 
         builder.build();
 

@@ -9,7 +9,7 @@
     <version>1.0-Beta</version>
 
     <properties>
-        <java.version>12</java.version>
+        <java.version>8</java.version>
     </properties>
 
     <dependencies>
@@ -38,6 +38,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.20</version>
+            <type>pom</type>
+        </dependency>
+
 
     </dependencies>
 
