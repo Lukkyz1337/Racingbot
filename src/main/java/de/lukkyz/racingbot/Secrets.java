@@ -15,9 +15,9 @@ public class Secrets {
 
     public static Connection getDatabaseConnection(){
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(connectionString, databaseUser, databasePassword);
-        } catch (/*ClassNotFoundException| */SQLException e) {
+        } catch (ClassNotFoundException| SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -28,6 +28,7 @@ public class Secrets {
     public static final long DISCORD_SERVER_ID = 692620174209187840L;
     public static final long DISCORD_BOT_COMMANDS = 698683596604571738L;
     public static final long DISCORD_PERSONAL_BESTS = 696127160225890347L;
+    public static final long DISCORD_TWITCH_LINKS = 721130169829556314L;
 
     //event.getJDA().getGuildById(Secrets.DISCORD_SERVER_ID).getTextChannelById(Secrets.DISCORD_BOT_COMMANDS);
 

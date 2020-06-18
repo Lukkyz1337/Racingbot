@@ -1,6 +1,8 @@
 package de.lukkyz.racingbot;
 
 import de.lukkyz.racingbot.commands.CommandHandler;
+import de.lukkyz.racingbot.commands.impl.TwitchCommand;
+import de.lukkyz.racingbot.commands.impl.GroupCommand;
 import de.lukkyz.racingbot.commands.impl.PbCommand;
 import de.lukkyz.racingbot.commands.impl.RegisterCommand;
 import de.lukkyz.racingbot.commands.impl.UpdatePbCommand;
@@ -32,6 +34,8 @@ public class Racingbot {
         CommandHandler.commands.put("update", new UpdatePbCommand());
         CommandHandler.commands.put("pb", new PbCommand());
         CommandHandler.commands.put("register", new RegisterCommand());
+        CommandHandler.commands.put("groups", new GroupCommand());
+        CommandHandler.commands.put("twitch", new TwitchCommand());
 
         builder.build();
 
