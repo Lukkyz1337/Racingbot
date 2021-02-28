@@ -4,3 +4,5 @@ target/classes/de/lukkyz/racingbot/commands/
 *.class
 
 src/main/java/de/lukkyz/racingbot/Secrets.java
+
+target/

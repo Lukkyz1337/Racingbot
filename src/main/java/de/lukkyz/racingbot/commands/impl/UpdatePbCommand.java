@@ -22,8 +22,6 @@ public class UpdatePbCommand implements Command {
         if (args.length > 1 && checkIfTime(args[1])) {
             int[] time = timeArray(args[1]);
             try {
-                AuditableRestAction<Void> voidAuditableRestAction = event.getGuild().addRoleToMember(event.getMember(), event.getGuild().getRoleById("718192130803105862"));
-                voidAuditableRestAction.queue();
                 if (args[0].equalsIgnoreCase("glitchless")) {
 
                     Connection conn = Secrets.getDatabaseConnection();

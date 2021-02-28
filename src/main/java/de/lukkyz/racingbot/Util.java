@@ -54,7 +54,7 @@ public class Util {
 
         for (PlacedRun run : runs) {
 
-            if (run.getRun().getLevel() == null && run.getRun().getCategory().getName().toLowerCase().endsWith(category.toLowerCase())) {
+            if (run.getRun().getLevel() == null && run.getRun().getCategory().getName().toLowerCase().endsWith(category.toLowerCase().equals("nosla") ? "no sla" : category.toLowerCase())) {
                 pbs += run.getRun().getTimes().getPrimary().replace("M", ":").replace("PT", "").replace("S", "");
             }
 
